@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="ccd@192.168.0.168:22">
+    <serverData>
+      <paths name="ccd@192.168.0.168:22">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_825" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ccd_project">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/python" local="$PROJECT_DIR$" web="http://192.168.0.168" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
