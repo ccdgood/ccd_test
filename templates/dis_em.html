@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        <table id="in_tab">
+            <div>
+                <thead>
+                    <tr>
+                        <th id="t1" onclick="_srot(this)">IP地址</th><th id="t2" onclick="_srot(this)">系统类型</th><th id="t3" onclick="_srot(this)">登录用户</th><th id="t4" onclick="_srot(this)">资产使用者</th><th id="t5" onclick="_srot(this)">座位编号</th><th id="t6" onclick="_srot(this)">IT资产编号</th><th id="t7" onclick="_srot(this)">CPU</th><th id="t8" onclick="_srot(this)">内存</th><th id="t9" onclick="_srot(this)">显卡</th><th id="t10" onclick="_srot(this)">MAC地址</th><th id="t11" onclick="_srot(this)">最后更新时间</th>
+                    </tr>
+                </thead>
+            </div>
+            <div>
+                {% for computer_status in computer_statuses %}
+                    {% if  forloop.counter|get_quyu  %}
+                        <tr class="row1">
+                            <td>{{ computer_status.c_network }}</td>
+                            <td>{{ computer_status.system_type }}</td>
+                            <td>{{ computer_status.name }}</td>
+                            <td>{{ computer_status.asset_users }}</td>
+                            <td>{{ computer_status.seat_number }}</td>
+                            <td>{{ computer_status.it_number }}</td>
+                            <td>{{ computer_status.c_cpu }}</td>
+                            <td>{{ computer_status.c_memory}}</td>
+                            <td>{{ computer_status.c_display}}</td>
+                            <td>{{ computer_status.mac_network}}</td>
+                            <td>{{ computer_status.c_time }}</td>
+                        </tr>
+                    {% else %}
+                        <tr class="row2">
+                            <td>{{ computer_status.c_network }}</td>
+                            <td>{{ computer_status.system_type }}</td>
+                            <td>{{ computer_status.name }}</td>
+                            <td>{{ computer_status.seat_number }}</td>
+                            <td>{{ computer_status.it_number }}</td>
+                            <td>{{ computer_status.it_number }}</td>
+                            <td>{{ computer_status.c_cpu }}</td>
+                            <td>{{ computer_status.c_memory}}</td>
+                            <td>{{ computer_status.c_display}}</td>
+                            <td>{{ computer_status.mac_network}}</td>
+                            <td>{{ computer_status.c_time }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </table>
+</body>
+</html>

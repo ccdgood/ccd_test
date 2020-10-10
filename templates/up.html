@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href={% static "/css/base.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "/css/changelists.css" %}>
+    <link rel="stylesheet" type="text/css" href={% static "/css/responsive.css" %}>
+    <script src="{% static '/jquery-1.8.3.min.js' %}"></script>
+    <script>
+        function _sort(objs) {
+           var name = $(objs).text();
+           var sid_table = $("#sid").val();
+           var sid_text = $("#sid option:selected").text();
+           var ziduan;
+           switch (name) {
+                case ("资产编号"):
+                    ziduan = "it_number";
+                    break;
+                case ("资产使用者"):
+                    ziduan = "asset_users";
+                    break;
+                case ("具体位置"):
+                    ziduan = "seat_number";
+                    break;
+                case ("资产类型"):
+                    ziduan = "category";
+                    break;
+                case ("确认盘点状态"):
+                    ziduan = "flag";
+                    break;
+           }
+           $.post("/up/",{'ziduan':ziduan,'in_table':sid_text,'id_num':"2"},function (data,status) {
+                $("#pstable").html(data);
+                $("sid").attr('value',sid_table);
+            });
+       }
+    </script>
+</head>
+<body>
+      <table id ="pstable">
+          <thead>
+            <th id="t1" onclick="_sort(this)" style="width:266px">资产编号</th><th id="t2" onclick="_sort(this)" style="width:266px">资产使用者</th><th id="t3" onclick="_sort(this)" style="width:266px">具体位置</th><th id="t4" onclick="_sort(this)" style="width:266px">资产类型</th><th id="t4" onclick="_sort(this)" style="width:266px">确认盘点状态</th>
+          </thead>
+          {% for in_vlaue in vlaue %}
+              {% if  forloop.counter|get_quyu  %}
+                  {% if in_vlaue.flag == '1' %}
+                      <tr bgcolor="#87cefa" id={{ in_vlaue.it_number }}>
+                     <td><h3>{{ in_vlaue.it_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.asset_users }}</h3></td>
+                    <td><h3>{{ in_vlaue.seat_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.category }}</h3></td>
+                    <td><button text=" 按 钮1 " style="width:200px;height:60px" class="row1" id = {{ in_vlaue.it_number }} onclick="set_y(this)"></button> </td>
+                      </tr>
+                  {% else %}
+                     <tr class="row1" id={{ in_vlaue.it_number }}>
+                    <td><h3>{{ in_vlaue.it_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.asset_users }}</h3></td>
+                    <td><h3>{{ in_vlaue.seat_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.category }}</h3></td>
+                    <td><button text=" 按 钮1 " style="width:200px;height:60px" class="row1" id = {{ in_vlaue.it_number }} onclick="set_y(this)"></button> </td>
+                     </tr>
+                  {% endif %}
+              {% else %}
+                  {% if in_vlaue.flag == '1' %}
+                    <tr bgcolor="#87cefa" id={{ in_vlaue.it_number }}>
+                    <td><h3>{{ in_vlaue.it_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.asset_users }}</h3></td>
+                    <td><h3>{{ in_vlaue.seat_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.category }}</h3></td>
+                    <td><button text=" 按 钮1 " style="width:200px;height:60px" class="row1" id = {{ in_vlaue.it_number }} onclick="set_y(this)"></button> </td>
+                    </tr>
+                  {% else %}
+                    <tr class="row2" id={{ in_vlaue.it_number }}>
+                    <td><h3>{{ in_vlaue.it_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.asset_users }}</h3></td>
+                    <td><h3>{{ in_vlaue.seat_number }}</h3></td>
+                    <td><h3>{{ in_vlaue.category }}</h3></td>
+                    <td><button text=" 按 钮1 " style="width:200px;height:60px" class="row1" id = {{ in_vlaue.it_number }} onclick="set_y(this)"></button> </td>
+                    </tr>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+
+      </table>
+</body>
+</html>
